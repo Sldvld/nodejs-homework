@@ -1,5 +1,6 @@
 const express = require("express");
 const expressAsync = require("express-async-handler");
+const { TokenExpiredError } = require("jsonwebtoken");
 const ctrl = require("../../controllers/auth/");
 const { validateBody, authenticate, upload } = require("../../middlewares");
 const { schemas } = require("../../models/user");
@@ -10,6 +11,8 @@ router.post(
   validateBody(schemas.registerSchema),
   expressAsync(ctrl.register)
 );
+
+router.get("/verify/:verificationCode", expressAsync(ctrl.verifyEmail));
 
 router.post(
   "/login",

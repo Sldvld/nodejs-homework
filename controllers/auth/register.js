@@ -1,6 +1,6 @@
 const bcryptjs = require("bcryptjs");
 const { User } = require("../../models/user");
-const { HttpError, sendMail } = require("../../helpers");
+const { HttpError, sendEmail } = require("../../helpers");
 const gravatar = require("gravatar");
 const { nanoid } = require("nanoid");
 const { BASE_URL } = process.env;
@@ -28,7 +28,7 @@ const register = async (req, res) => {
     subject: "Verify email",
     html: `<a target="_blank" href="${BASE_URL}/api/auth/verify/${verificationCode}">Click me</a>`,
   };
-  await sendMail(verifyEmail);
+  await sendEmail(verifyEmail);
 
   res.status(201).json({
     email: newUser.email,

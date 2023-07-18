@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 const { META_PASSWORD } = process.env;
 
-const nodemailerConfig = {
+const config = {
   host: "smtp.meta.ua",
   port: 465,
   secure: true,
@@ -12,10 +12,10 @@ const nodemailerConfig = {
   },
 };
 
-const transport = nodemailer.createTransport(nodemailerConfig);
+const transport = nodemailer.createTransport(config);
 
-const sendMail = async (mail) => {
-  await transport.sendMail({ ...mail, from: "sldvld@meta.ua" });
+const sendMail = async (data) => {
+  await transport.sendMail({ ...data, from: "sldvld@meta.ua" });
   return true;
 };
 

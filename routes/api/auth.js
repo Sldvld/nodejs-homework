@@ -15,6 +15,12 @@ router.post(
 router.get("/verify/:verificationCode", expressAsync(ctrl.verifyEmail));
 
 router.post(
+  "/verify",
+  validateBody(schemas.emailSchema),
+  expressAsync(ctrl.resentVerifyEmail)
+);
+
+router.post(
   "/login",
   validateBody(schemas.loginSchema),
   expressAsync(ctrl.login)

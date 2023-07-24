@@ -6,6 +6,11 @@ const addSchema = Joi.object({
   favorite: Joi.boolean(),
 });
 
+const emailSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required(),
+});
+
 module.exports = {
   addSchema,
+  emailSchema,
 };
